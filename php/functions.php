@@ -117,11 +117,11 @@ function getData($from_cache = false)
     // Get max height from bitnodes.earn.com
     if ($config['display_max_height'] === true) {
         if ($config['display_testnet'] === true) {
-            $exec_result = json_decode(curlRequest("https://chain.so/api/v2/get_info/BTCTEST", $bitnodes_curl), true);
+            $exec_result = json_decode(curlRequest("https://api.blockcypher.com/v1/btc/test3", $bitnodes_curl), true);
         } else {
-            $exec_result = json_decode(curlRequest("https://chain.so/api/v2/get_info/BTC", $bitnodes_curl), true);
+            $exec_result = json_decode(curlRequest("https://api.blockcypher.com/v1/btc/main", $bitnodes_curl), true);
         }
-        $data['max_height'] = $exec_result['data']['blocks'];
+        $data['max_height'] = $exec_result['height'];
         $data['node_height_percent'] = round(($data['blocks']/$data['max_height'])*100, 1);
     }
 
